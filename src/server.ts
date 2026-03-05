@@ -34,8 +34,9 @@ app.use(
   })
 );
 
-// Body parser for login form
-app.use(express.urlencoded({ extended: false }));
+// Body parsers for login form
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // --- Public routes (no auth required) ---
 
@@ -47,7 +48,8 @@ app.get("/login", (_req, res) => {
 // Login action
 app.post("/login", (req, res) => {
   const password = process.env.DASHBOARD_PASSWORD || "42advisory";
-  if (req.body.password === password) {
+  const submitted = req.body?.password;
+  if (submitted && submitted === password) {
     (req.session as any).authenticated = true;
     res.redirect("/");
   } else {
