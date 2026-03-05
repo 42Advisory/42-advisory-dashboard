@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — 42 Advisory SEO Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #1a1a1a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .login-card .logo {
+      width: 140px;
+      margin-bottom: 12px;
+    }
+    .login-card .subtitle {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #6b7280;
+      margin-bottom: 32px;
+    }
+    .login-card h1 {
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+    .login-card .desc {
+      font-size: 14px;
+      color: #6b7280;
+      margin-bottom: 28px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      color: #1a1a1a;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .form-group input:focus {
+      border-color: #FFC907;
+      box-shadow: 0 0 0 3px rgba(255,201,7,0.15);
+    }
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: #FFC907;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #1a1a1a;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .login-btn:hover {
+      background: #e6b500;
+    }
+    .error-msg {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: none;
+    }
+    .error-msg.show { display: block; }
+    .gold-bar {
+      width: 60px;
+      height: 4px;
+      background: #FFC907;
+      border-radius: 2px;
+      margin: 0 auto 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <img class="logo" src="https://42advisory.com.au/hubfs/42_Logo_Header.svg" alt="42 Advisory">
+    <div class="subtitle">SEO Intelligence Dashboard</div>
+    <div class="gold-bar"></div>
+    <h1>Sign In</h1>
+    <p class="desc">Enter the dashboard password to continue</p>
+    <div class="error-msg" id="error-msg">Invalid password. Please try again.</div>
+    <form method="POST" action="/login">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter password" required autofocus>
+      </div>
+      <button type="submit" class="login-btn">Sign In</button>
+    </form>
+  </div>
+  <script>
+    if (window.location.search.includes("error=1")) {
+      document.getElementById("error-msg").classList.add("show");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>42 Advisory — SEO Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <img src="https://42advisory.com.au/hubfs/42_Logo_Header.svg" alt="42 Advisory">
+      <div class="brand-text">
+        <span class="brand-name">42 Advisory</span>
+        <span class="brand-sub">SEO Dashboard</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="nav-link active" data-tab="overview">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        Overview</a></li>
+      <li><a href="#" class="nav-link" data-tab="keywords">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+        Keywords</a></li>
+      <li><a href="#" class="nav-link" data-tab="competitors">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        Competitors</a></li>
+      <li><a href="#" class="nav-link" data-tab="ai-visibility">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0110 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M12 8v4l3 3"/></svg>
+        AI Visibility</a></li>
+      <li><a href="#" class="nav-link" data-tab="audit">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/><path d="M9 14l2 2 4-4"/></svg>
+        SEO Audit</a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <div class="domain-badge">42advisory.com.au</div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main">
+    <header class="topbar">
+      <h1 id="page-title">Overview</h1>
+      <div class="topbar-right">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">Loading...</span>
+      </div>
+    </header>
+
+    <!-- TAB: Overview -->
+    <section class="tab-content active" id="tab-overview">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Organic Sessions</div>
+          <div class="kpi-value" id="kpi-sessions">—</div>
+          <div class="kpi-delta" id="kpi-sessions-delta"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total Users</div>
+          <div class="kpi-value" id="kpi-users">—</div>
+          <div class="kpi-delta" id="kpi-users-delta"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">GSC Clicks</div>
+          <div class="kpi-value" id="kpi-clicks">—</div>
+          <div class="kpi-delta" id="kpi-clicks-delta"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg Position</div>
+          <div class="kpi-value" id="kpi-position">—</div>
+          <div class="kpi-delta" id="kpi-position-delta"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Organic Keywords</div>
+          <div class="kpi-value" id="kpi-keywords">—</div>
+          <div class="kpi-delta" id="kpi-keywords-delta"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Traffic Value</div>
+          <div class="kpi-value" id="kpi-traffic-value">—</div>
+          <div class="kpi-delta" id="kpi-traffic-value-delta"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">CTR</div>
+          <div class="kpi-value" id="kpi-ctr">—</div>
+          <div class="kpi-delta" id="kpi-ctr-delta"></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Bounce Rate</div>
+          <div class="kpi-value" id="kpi-bounce">—</div>
+          <div class="kpi-delta" id="kpi-bounce-delta"></div>
+        </div>
+      </div>
+      <div class="range-selector">
+        <span class="range-label">Date Range:</span>
+        <button class="range-btn active" data-range="30">30 Days</button>
+        <button class="range-btn" data-range="90">3 Months</button>
+        <button class="range-btn" data-range="180">6 Months</button>
+      </div>
+      <div class="chart-row">
+        <div class="chart-card">
+          <h3 id="chart-ga4-title">Sessions & Users</h3>
+          <canvas id="chart-ga4-trend"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3 id="chart-gsc-title">Clicks & Impressions</h3>
+          <canvas id="chart-gsc-trend"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: Keywords -->
+    <section class="tab-content" id="tab-keywords">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Ranked Keywords</div>
+          <div class="kpi-value" id="kw-total">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Avg Position</div>
+          <div class="kpi-value" id="kw-avg-pos">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Top 10 Rankings</div>
+          <div class="kpi-value" id="kw-top10">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Top 3 Rankings</div>
+          <div class="kpi-value" id="kw-top3">—</div>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-card">
+          <h3>Position Distribution</h3>
+          <canvas id="chart-positions"></canvas>
+        </div>
+        <div class="chart-card">
+          <h3>Top Ranking Keywords by Position</h3>
+          <canvas id="chart-top-keywords"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Top Ranking Keywords (DataForSEO)</h3>
+        <div class="table-wrap" id="keywords-table"></div>
+      </div>
+      <div class="card">
+        <h3>GSC Query Performance (28 days)</h3>
+        <div class="table-wrap" id="gsc-keywords-table"></div>
+      </div>
+    </section>
+
+    <!-- TAB: Competitors -->
+    <section class="tab-content" id="tab-competitors">
+      <div class="card">
+        <h3>Organic Competitors</h3>
+        <div class="table-wrap" id="competitors-table"></div>
+      </div>
+      <div class="card">
+        <h3 id="intersection-title">Keyword Intersection</h3>
+        <div class="table-wrap" id="intersection-table"></div>
+      </div>
+    </section>
+
+    <!-- TAB: AI Visibility -->
+    <section class="tab-content" id="tab-ai-visibility">
+      <div class="kpi-grid kpi-grid-3">
+        <div class="kpi-card">
+          <div class="kpi-label">Keywords with AI Overview</div>
+          <div class="kpi-value" id="ai-overview-count">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">AI Overview Rankings</div>
+          <div class="kpi-value" id="ai-ranked-count">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Brand Mentions in LLMs</div>
+          <div class="kpi-value" id="ai-mentions-count">—</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Target Keywords — AI Search Landscape</h3>
+        <div class="table-wrap" id="ai-keywords-table"></div>
+      </div>
+      <div class="chart-row">
+        <div class="card" style="flex:1">
+          <h3>Keywords in AI Overview</h3>
+          <div class="table-wrap" id="ai-overview-table"></div>
+        </div>
+        <div class="card" style="flex:1">
+          <h3>LLM Mentions (AI Overview References)</h3>
+          <div class="table-wrap" id="llm-mentions-table"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: Audit -->
+    <section class="tab-content" id="tab-audit">
+      <div class="kpi-grid kpi-grid-4">
+        <div class="kpi-card">
+          <div class="kpi-label">Performance</div>
+          <div class="kpi-value score" id="audit-perf">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">SEO Score</div>
+          <div class="kpi-value score" id="audit-seo">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Accessibility</div>
+          <div class="kpi-value score" id="audit-a11y">—</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Best Practices</div>
+          <div class="kpi-value score" id="audit-bp">—</div>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="card" style="flex:1">
+          <h3>Core Web Vitals</h3>
+          <div class="cwv-grid" id="cwv-grid"></div>
+        </div>
+        <div class="card" style="flex:1">
+          <h3>Lighthouse Scores</h3>
+          <canvas id="chart-lighthouse"></canvas>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="card" style="flex:1">
+          <h3>Backlink Profile</h3>
+          <div class="table-wrap" id="backlinks-summary"></div>
+        </div>
+        <div class="card" style="flex:1">
+          <h3>On-Page Analysis</h3>
+          <div class="table-wrap" id="onpage-summary"></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Technology Stack</h3>
+        <div class="tag-list" id="tech-stack"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
